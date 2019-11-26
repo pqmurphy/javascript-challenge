@@ -1,6 +1,20 @@
 // from data.js
 var tableData = data;
 
+function initialise() {
+    var tbody = d3.select("tbody");
+  
+    tableData.forEach(function(data) {
+      var row = tbody.append("tr");
+      Object.entries(data).forEach(function([key, value]) {
+        var cell = row.append("td");
+        cell.text(value);
+      });
+    });
+  }
+  
+  initialise();
+
 // Select Button
 var button = d3.select("#filter-btn");
 
@@ -37,6 +51,7 @@ button.on("click", function() {
     console.log(filteredData)
 
     var tbody = d3.select("tbody");
+    tbody.html("");
 
     filteredData.forEach(function(filteredData) {
         var row = tbody.append("tr");
